@@ -2,40 +2,51 @@ type: object
 properties:
   details:
     type: array
+    description: Contains a list of description for each year the company operated on.
     items:
       $ref: .\CompanyDetails.yaml
   cui:
     type: string
     example: '40167467'
+    description: The unique identifier of the company.
   caen:
     type: string
     example: '4711 - Retail trade in non-specialized stores, mainly selling food, beverages and tobacco'
+    description: The specific sector of the company in which the activity is performed.
   address:
     type: string
     example: 'Loc. Târgu Lăpuş, Oraş Târgu Lăpuş, Str. TINERETULUI, Nr. 10, Județ Maramureş, Cod poștal 435600'
+    description: The full address of the given company.
   status:
     uniqueItems: true
     type: array
+    description: the list of statuses the company is listed into.
     items:
       $ref: .\Status.yaml
   registrationNumber:
     type: string
     example: 'J24/1880/2018'
+    description: The registration number of the company.
   companyName:
     type: string
     example: 'APOZEC UNIVERSAL S.R.L.'
+    description: The name of the company.
   yearOfEstablishment:
     type: string
     format: date
     example: '2018-01-01'
+    description: The date on which the company was created.
   yearsOfOperation:
     type: integer
     format: int32
     example: 5
+    description: Number of activity years of the company.
   countViews:
     type: integer
     format: int32
     example: 47
+    description: The number of views this company has on MetricBiz Platform.
   currency:
     type: string
     example: 'RON'
+    description: The currency of the values presented in this response.

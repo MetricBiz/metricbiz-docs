@@ -7,12 +7,14 @@ get:
     - name: cui
       in: path
       required: true
+      description: This represents the unique identifier of a company
       schema:
         type: string
       example: '40167467'
     - name: currency
       in: query
       required: false
+      description: This represents the currency in which the amounts are desired to be displayed.
       schema:
         type: string
         default: RON
