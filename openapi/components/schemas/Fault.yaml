@@ -3,5 +3,9 @@ properties:
   code:
     type: integer
     format: int32
+    example: 404
+    description: Indicates a code associated to the response http status.
   message:
     type: string
+    example: "The given resource not found"
+    description: A detailed message of the client error received.
