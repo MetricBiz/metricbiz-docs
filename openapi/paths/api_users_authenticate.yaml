@@ -1,0 +1,24 @@
+post:
+  summary: This is used to authenticate an user.
+  tags:
+    - user-controller
+  operationId: login
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\LoginUser.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: object
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

@@ -1,0 +1,20 @@
+post:
+  summary: >-
+    This is used logout an existing user. This will mark also the token as
+    unusable once called.
+  tags:
+    - user-controller
+  operationId: logout
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\UserDTO.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

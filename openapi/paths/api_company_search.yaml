@@ -1,0 +1,27 @@
+get:
+  summary: Retrives the top 10 companies based on cui or name as the keyword.
+  tags:
+    - company-controller
+  operationId: search
+  parameters:
+    - name: keyword
+      in: query
+      required: false
+      schema:
+        type: string
+        default: ''
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\SearchCompanyResponse.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

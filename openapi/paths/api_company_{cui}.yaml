@@ -1,0 +1,46 @@
+get:
+  summary: Retrives the company details based on CUI.
+  tags:
+    - company-controller
+  operationId: getCompanyBasicDetails
+  parameters:
+    - name: cui
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: currency
+      in: query
+      required: false
+      schema:
+        type: string
+        default: RON
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\CompanyDetailsResponse.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml
+  x-codeSamples:
+    - lang: C#
+      source:
+        $ref: ../code_samples/csharp/api_company_{cui}.cs
+    - lang: Java
+      source:
+        $ref: ../code_samples/java/api_company_{cui}.java
+    - lang: Javascript
+      source:
+        $ref: ../code_samples/javascript/api_company_{cui}.js
+    - lang: ReactJs
+      source:
+        $ref: ../code_samples/reactJs/api_company_{cui}.js
+    - lang: Python
+      source:
+        $ref: ../code_samples/python/api_company_{cui}.py

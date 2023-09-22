@@ -1,0 +1,7 @@
+type: object
+properties:
+  year:
+    type: integer
+    format: int32
+  value:
+    type: number

@@ -1,0 +1,27 @@
+type: object
+properties:
+  caen:
+    type: string
+  fromYear:
+    type: integer
+    format: int32
+  description:
+    type: string
+  fiscalValueCount:
+    type: number
+  fiscalValueAvg:
+    type: number
+  fiscalValueSum:
+    type: number
+  employeesCount:
+    type: number
+  employeesSum:
+    type: number
+  employeesAvg:
+    type: number
+  profitCount:
+    type: number
+  profitSum:
+    type: number
+  profitAvg:
+    type: number

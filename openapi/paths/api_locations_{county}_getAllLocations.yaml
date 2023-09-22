@@ -1,0 +1,38 @@
+get:
+  summary: REtrives the list of all locations inside a city.
+  tags:
+    - city-controller
+  operationId: getAllCitiesByCounty
+  parameters:
+    - name: county
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: pageNumber
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    - name: pageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 50
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\PageCityDetailsModel.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

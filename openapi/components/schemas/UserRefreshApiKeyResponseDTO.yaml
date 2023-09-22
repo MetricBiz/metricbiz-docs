@@ -1,0 +1,4 @@
+type: object
+properties:
+  apiKey:
+    type: string

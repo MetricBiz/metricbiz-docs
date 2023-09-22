@@ -1,0 +1,13 @@
+type: object
+properties:
+  fromYear:
+    type: integer
+    format: int32
+  capexRithm:
+    type: number
+  depreciationRate:
+    type: number
+  tangibleRealEstateAssets:
+    type: number
+  fiscalValue:
+    type: number

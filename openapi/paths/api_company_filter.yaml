@@ -1,0 +1,26 @@
+get:
+  summary: Filters company based on various indicators.
+  tags:
+    - company-controller
+  operationId: listIndicators_1
+  parameters:
+    - name: companyFilterCriteria
+      in: query
+      required: true
+      schema:
+        $ref: ..\components\schemas\CompanyFilterCriteria.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\SearchCompanyResponse.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

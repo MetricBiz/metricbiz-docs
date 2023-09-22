@@ -1,0 +1,26 @@
+type: object
+properties:
+  status:
+    type: string
+  caen:
+    type: string
+  caenGroup:
+    type: string
+  county:
+    type: string
+  locality:
+    type: string
+  minEmployees:
+    type: integer
+    format: int32
+  maxEmployees:
+    type: integer
+    format: int32
+  minFiscalValue:
+    type: number
+  maxFiscalValue:
+    type: number
+  minProfit:
+    type: number
+  maxProfit:
+    type: number

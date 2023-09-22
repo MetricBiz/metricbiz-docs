@@ -1,0 +1,30 @@
+get:
+  summary: Retrives the investment of a given company cui.
+  tags:
+    - company-controller
+  operationId: getInvestment
+  parameters:
+    - name: cui
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: currency
+      in: query
+      required: false
+      schema:
+        type: string
+        default: RON
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\InvestmentReportResponseDTO.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

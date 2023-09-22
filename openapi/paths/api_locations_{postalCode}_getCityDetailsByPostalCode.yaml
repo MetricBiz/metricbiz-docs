@@ -1,0 +1,38 @@
+get:
+  summary: Retrieves the city details by postal code.
+  tags:
+    - city-controller
+  operationId: findByPostalCode
+  parameters:
+    - name: postalCode
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: language
+      in: header
+      required: false
+      schema:
+        type: string
+        default: en
+    - name: traceid
+      in: header
+      required: false
+      schema:
+        type: string
+        default: none
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\Cities.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

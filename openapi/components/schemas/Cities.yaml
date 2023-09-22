@@ -1,0 +1,12 @@
+type: object
+properties:
+  postalCode:
+    type: string
+  city:
+    type: string
+  county:
+    type: string
+  autoCounty:
+    type: string
+  streetName:
+    type: string

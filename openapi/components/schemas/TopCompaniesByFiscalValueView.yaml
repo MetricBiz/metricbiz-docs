@@ -1,0 +1,13 @@
+type: object
+properties:
+  caen:
+    type: string
+  name:
+    type: string
+  cui:
+    type: string
+  cifradeafacerineta:
+    type: number
+  fromYear:
+    type: integer
+    format: int32

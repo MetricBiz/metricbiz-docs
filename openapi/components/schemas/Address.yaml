@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  companyName:
+    type: string
+  cui:
+    type: string
+  street:
+    type: string
+  city:
+    type: string
+  postCode:
+    type: string
+  country:
+    type: string
+  state:
+    type: string

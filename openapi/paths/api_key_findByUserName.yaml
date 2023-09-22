@@ -1,0 +1,18 @@
+get:
+  summary: Retrieves the API key based on an authentication token.
+  tags:
+    - api-key-controller
+  operationId: getApiKey
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\UserRefreshApiKeyResponseDTO.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

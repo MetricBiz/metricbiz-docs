@@ -1,0 +1,15 @@
+type: object
+properties:
+  fromYear:
+    type: integer
+    format: int32
+  roa:
+    type: number
+  roe:
+    type: number
+  netResult:
+    type: number
+  operationalResult:
+    type: number
+  oroa:
+    type: number

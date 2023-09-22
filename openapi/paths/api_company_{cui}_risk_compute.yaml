@@ -1,0 +1,32 @@
+get:
+  summary: Compute the risk of a given company cui.
+  tags:
+    - company-controller
+  operationId: getCompanyRisk
+  parameters:
+    - name: cui
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: currency
+      in: query
+      required: false
+      schema:
+        type: string
+        default: RON
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\RiskScore.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

@@ -1,0 +1,26 @@
+get:
+  summary: Retrives the top 10 companies on a given sector caen.
+  tags:
+    - company-controller
+  operationId: getTop10CompaniesByCaen
+  parameters:
+    - name: caen
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ..\components\schemas\TopCompaniesByFiscalValueView.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

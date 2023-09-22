@@ -1,0 +1,9 @@
+type: object
+properties:
+  label:
+    type: string
+  data:
+    uniqueItems: true
+    type: array
+    items:
+      $ref: .\FinancialIndicatorChartDataDTO.yaml

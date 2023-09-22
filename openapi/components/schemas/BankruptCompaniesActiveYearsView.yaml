@@ -1,0 +1,11 @@
+type: object
+properties:
+  cui:
+    type: string
+  caen:
+    type: string
+  county:
+    type: string
+  activeYears:
+    type: integer
+    format: int64

@@ -1,0 +1,32 @@
+type: object
+properties:
+  details:
+    type: array
+    items:
+      $ref: .\CompanyDetails.yaml
+  cui:
+    type: string
+  caen:
+    type: string
+  address:
+    type: string
+  status:
+    uniqueItems: true
+    type: array
+    items:
+      $ref: .\Status.yaml
+  registrationNumber:
+    type: string
+  companyName:
+    type: string
+  yearOfEstablishment:
+    type: string
+    format: date
+  yearsOfOperation:
+    type: integer
+    format: int32
+  countViews:
+    type: integer
+    format: int32
+  currency:
+    type: string

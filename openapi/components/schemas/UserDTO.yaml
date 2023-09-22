@@ -1,0 +1,46 @@
+required:
+  - email
+  - firstName
+  - lastName
+  - password
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - BASIC
+      - FACEBOOK
+      - GOOGLE
+  email:
+    maxLength: 255
+    minLength: 1
+    type: string
+  password:
+    maxLength: 255
+    minLength: 8
+    type: string
+  phone:
+    maxLength: 10
+    minLength: 10
+    pattern: ^[0-9]+$
+    type: string
+  firstName:
+    maxLength: 255
+    minLength: 1
+    pattern: ^[a-zA-Z]*$
+    type: string
+  lastName:
+    maxLength: 255
+    minLength: 1
+    pattern: ^[a-zA-Z]*$
+    type: string
+  clientId:
+    type: string
+  userId:
+    type: string
+  stripeCustomerId:
+    type: string
+  isLegalPerson:
+    type: string
+  address:
+    $ref: .\Address.yaml

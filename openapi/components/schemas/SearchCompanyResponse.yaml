@@ -1,0 +1,8 @@
+type: object
+properties:
+  cui:
+    type: string
+  name:
+    type: string
+  address:
+    type: string

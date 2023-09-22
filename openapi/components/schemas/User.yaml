@@ -1,0 +1,55 @@
+type: object
+properties:
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - BASIC
+      - FACEBOOK
+      - GOOGLE
+  username:
+    type: string
+  email:
+    type: string
+  phone:
+    type: string
+  firstName:
+    type: string
+  lastName:
+    type: string
+  clientId:
+    type: string
+  userId:
+    type: string
+  apiKey:
+    type: string
+  stripeCustomerId:
+    type: string
+  status:
+    type: string
+    enum:
+      - ACTIVE
+      - INACTIVE
+  selectedCui:
+    type: string
+  roles:
+    uniqueItems: true
+    type: array
+    items:
+      $ref: .\UserRole.yaml
+  isLegalPerson:
+    type: boolean
+  billAddress:
+    $ref: .\Address.yaml
+  pendingSubscription:
+    $ref: .\Subscription.yaml
+  activeSubscription:
+    $ref: .\Subscription.yaml

@@ -1,0 +1,18 @@
+get:
+  summary: Retrieves an user details based on the token.
+  tags:
+    - user-controller
+  operationId: findUserById
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\User.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

@@ -1,0 +1,58 @@
+get:
+  summary: Retrives the top 10 bankrupt company stats based on a specific caen.
+  tags:
+    - company-controller
+  operationId: findTop10CompaniesByCaen
+  parameters:
+    - name: caen
+      in: query
+      required: false
+      schema:
+        type: string
+        default: ''
+    - name: year
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    - name: county
+      in: query
+      required: false
+      schema:
+        type: string
+        default: ''
+    - name: pageNumber
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    - name: pageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        default: 20
+    - name: sortBy
+      in: query
+      required: false
+      schema:
+        type: string
+        default: caen
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\PageBankruptCompanyStatsView.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

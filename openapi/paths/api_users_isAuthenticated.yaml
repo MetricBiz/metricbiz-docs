@@ -1,0 +1,18 @@
+get:
+  summary: Checks if the token is still usable or if the user is authenticated.
+  tags:
+    - user-controller
+  operationId: userPing
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\UserAuthDTO.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

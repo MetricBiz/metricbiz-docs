@@ -1,0 +1,18 @@
+get:
+  summary: Checks the number of credit that the user can still use.
+  tags:
+    - subscription-controller
+  operationId: getActiveSubscriptionForUser
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\UserSubscriptionResponse.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

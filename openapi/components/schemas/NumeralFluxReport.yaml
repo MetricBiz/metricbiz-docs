@@ -1,0 +1,7 @@
+type: object
+properties:
+  fromYear:
+    type: integer
+    format: int32
+  advanceInventoryReceivable:
+    type: number

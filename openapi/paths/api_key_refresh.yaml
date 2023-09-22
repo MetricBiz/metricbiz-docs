@@ -1,0 +1,18 @@
+post:
+  summary: This refreshes the api key.
+  tags:
+    - api-key-controller
+  operationId: refreshApiKey
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\UserRefreshApiKeyResponseDTO.yaml
+    '400':
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: ..\components\schemas\Fault.yaml

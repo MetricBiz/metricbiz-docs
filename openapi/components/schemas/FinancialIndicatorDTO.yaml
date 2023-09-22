@@ -1,0 +1,14 @@
+type: object
+properties:
+  updatedAt:
+    type: string
+    format: date-time
+  caen:
+    type: string
+  fromYear:
+    type: integer
+    format: int32
+  indicators:
+    type: object
+    additionalProperties:
+      type: number

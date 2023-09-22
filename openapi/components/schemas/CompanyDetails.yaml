@@ -1,0 +1,14 @@
+type: object
+properties:
+  profit:
+    type: number
+  employeesNumber:
+    type: integer
+    format: int64
+  salesFigure:
+    type: number
+  year:
+    type: integer
+    format: int32
+  salesFigurePercentageIncreased:
+    type: number
