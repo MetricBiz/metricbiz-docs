@@ -1,7 +1,7 @@
 get:
   summary: Retrieves an user details based on the token.
   tags:
-    - user-controller
+    - User
   operationId: findUserById
   responses:
     '200':

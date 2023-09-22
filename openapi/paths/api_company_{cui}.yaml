@@ -1,7 +1,7 @@
 get:
   summary: Retrives the company details based on CUI.
   tags:
-    - company-controller
+    - Company
   operationId: getCompanyBasicDetails
   parameters:
     - name: cui

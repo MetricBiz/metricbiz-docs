@@ -1,7 +1,7 @@
 get:
   summary: REtrives the list of supported currencies.
   tags:
-    - currency-controller
+    - Currency
   operationId: getAllCurrencies
   responses:
     '200':

@@ -1,7 +1,7 @@
 get:
   summary: REtrives the list of all locations inside a city.
   tags:
-    - city-controller
+    - Location
   operationId: getAllCitiesByCounty
   parameters:
     - name: county

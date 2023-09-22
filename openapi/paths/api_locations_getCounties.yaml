@@ -1,7 +1,7 @@
 get:
   summary: Retrives the list of counties in a pageable manner.
   tags:
-    - city-controller
+    - Location
   operationId: getAllCounties
   parameters:
     - name: pageNumber

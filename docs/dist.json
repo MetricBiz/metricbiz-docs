@@ -25,7 +25,7 @@
       "post": {
         "summary": "This is used to register a new user to the MetricBiz Platform.",
         "tags": [
-          "user-controller"
+          "User"
         ],
         "operationId": "saveUser",
         "requestBody": {
@@ -66,7 +66,7 @@
       "post": {
         "summary": "This is used logout an existing user. This will mark also the token as unusable once called.",
         "tags": [
-          "user-controller"
+          "User"
         ],
         "operationId": "logout",
         "responses": {
@@ -97,7 +97,7 @@
       "post": {
         "summary": "This is used to authenticate an user.",
         "tags": [
-          "user-controller"
+          "User"
         ],
         "operationId": "login",
         "requestBody": {
@@ -138,7 +138,7 @@
       "post": {
         "summary": "This refreshes the api key.",
         "tags": [
-          "api-key-controller"
+          "API Key"
         ],
         "operationId": "refreshApiKey",
         "responses": {
@@ -169,7 +169,7 @@
       "get": {
         "summary": "Checks if the token is still usable or if the user is authenticated.",
         "tags": [
-          "user-controller"
+          "User"
         ],
         "operationId": "userPing",
         "responses": {
@@ -200,7 +200,7 @@
       "get": {
         "summary": "Retrieves an user details based on the token.",
         "tags": [
-          "user-controller"
+          "User"
         ],
         "operationId": "findUserById",
         "responses": {
@@ -231,7 +231,7 @@
       "get": {
         "summary": "Checks the number of credit that the user can still use.",
         "tags": [
-          "subscription-controller"
+          "Subscription"
         ],
         "operationId": "getActiveSubscriptionForUser",
         "responses": {
@@ -262,7 +262,7 @@
       "get": {
         "summary": "Retrieves the city details by postal code.",
         "tags": [
-          "city-controller"
+          "Location"
         ],
         "operationId": "findByPostalCode",
         "parameters": [
@@ -324,7 +324,7 @@
       "get": {
         "summary": "REtrives the list of all locations inside a city.",
         "tags": [
-          "city-controller"
+          "Location"
         ],
         "operationId": "getAllCitiesByCounty",
         "parameters": [
@@ -385,7 +385,7 @@
       "get": {
         "summary": "Retrives the list of counties in a pageable manner.",
         "tags": [
-          "city-controller"
+          "Location"
         ],
         "operationId": "getAllCounties",
         "parameters": [
@@ -438,7 +438,7 @@
       "get": {
         "summary": "Retrieves the API key based on an authentication token.",
         "tags": [
-          "api-key-controller"
+          "API Key"
         ],
         "operationId": "getApiKey",
         "responses": {
@@ -469,7 +469,7 @@
       "get": {
         "summary": "REtrives the list of supported currencies.",
         "tags": [
-          "currency-controller"
+          "Currency"
         ],
         "operationId": "getAllCurrencies",
         "responses": {
@@ -503,7 +503,7 @@
       "get": {
         "summary": "Retrives the company details based on CUI.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getCompanyBasicDetails",
         "parameters": [
@@ -513,7 +513,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "40167467"
           },
           {
             "name": "currency",
@@ -522,16 +523,81 @@
             "schema": {
               "type": "string",
               "default": "RON"
-            }
+            },
+            "example": "RON"
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CompanyDetailsResponse"
+                },
+                "example": {
+                  "value": {
+                    "details": [
+                      {
+                        "profit": -7739,
+                        "employeesNumber": 0,
+                        "salesFigure": 74308,
+                        "year": 2018,
+                        "salesFigurePercentageIncreased": 100
+                      },
+                      {
+                        "profit": 79478,
+                        "employeesNumber": 2,
+                        "salesFigure": 1343084,
+                        "year": 2019,
+                        "salesFigurePercentageIncreased": 1708
+                      },
+                      {
+                        "profit": 76359,
+                        "employeesNumber": 3,
+                        "salesFigure": 1703839,
+                        "year": 2020,
+                        "salesFigurePercentageIncreased": 27
+                      },
+                      {
+                        "profit": 70453,
+                        "employeesNumber": 4,
+                        "salesFigure": 2221787,
+                        "year": 2021,
+                        "salesFigurePercentageIncreased": 31
+                      },
+                      {
+                        "profit": 176334,
+                        "employeesNumber": 4,
+                        "salesFigure": 2929638,
+                        "year": 2022,
+                        "salesFigurePercentageIncreased": 32
+                      }
+                    ],
+                    "cui": "40167467",
+                    "caen": "4711 - Retail trade in non-specialized stores, mainly selling food, beverages and tobacco",
+                    "address": "Loc. Târgu Lăpuş, Oraş Târgu Lăpuş, Str. TINERETULUI, Nr. 10, Județ Maramureş, Cod poștal 435600",
+                    "status": [
+                      {
+                        "createdAt": "2023-05-03T11:28:27.520056Z",
+                        "updatedAt": "2023-09-19T06:11:28.542431Z",
+                        "code": 1048,
+                        "description": "function"
+                      },
+                      {
+                        "createdAt": "2023-05-03T11:28:27.64181Z",
+                        "updatedAt": "2023-09-19T06:11:28.621042Z",
+                        "code": 2069,
+                        "description": "headquarters expired"
+                      }
+                    ],
+                    "registrationNumber": "J24/1880/2018",
+                    "companyName": "APOZEC UNIVERSAL S.R.L.",
+                    "yearOfEstablishment": "2018-01-01",
+                    "yearsOfOperation": 5,
+                    "countViews": 46,
+                    "currency": "RON"
+                  }
                 }
               }
             }
@@ -575,7 +641,7 @@
       "get": {
         "summary": "Compute the risk of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getCompanyRisk",
         "parameters": [
@@ -628,7 +694,7 @@
       "get": {
         "summary": "retrieves the list of financial indicators for a given coimpany cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "listIndicators",
         "parameters": [
@@ -678,7 +744,7 @@
       "get": {
         "summary": "Retrives the summary of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getSummary",
         "parameters": [
@@ -728,7 +794,7 @@
       "get": {
         "summary": "Retrives the profitability of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getProfitability",
         "parameters": [
@@ -778,7 +844,7 @@
       "get": {
         "summary": "Retrives the numeral flux of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getNumeralFlux",
         "parameters": [
@@ -828,7 +894,7 @@
       "get": {
         "summary": "Retrives the liquidity of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getLiquidity",
         "parameters": [
@@ -878,7 +944,7 @@
       "get": {
         "summary": "Retrives the investment of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getInvestment",
         "parameters": [
@@ -928,7 +994,7 @@
       "get": {
         "summary": "Retrives the going concern indicator of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getGoingConcern",
         "parameters": [
@@ -978,7 +1044,7 @@
       "get": {
         "summary": "Retrives the competitive indicators of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getCompetitive",
         "parameters": [
@@ -1028,7 +1094,7 @@
       "get": {
         "summary": "Retrives the financial indicators in a chart view of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "listIndicatorsAsChart",
         "parameters": [
@@ -1078,7 +1144,7 @@
       "get": {
         "summary": "Retrives the finance activity of a given company cui.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getActivityFinance",
         "parameters": [
@@ -1128,7 +1194,7 @@
       "get": {
         "summary": "Retrives the top 10 companies on a given sector caen.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getTop10CompaniesByCaen",
         "parameters": [
@@ -1172,7 +1238,7 @@
       "get": {
         "summary": "Retrives the company distribution on a given sector caen.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getSectorDistributionByCaen",
         "parameters": [
@@ -1216,7 +1282,7 @@
       "get": {
         "summary": "Retrives the company average sector on a given caen.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getSectorAverageByCaen",
         "parameters": [
@@ -1260,7 +1326,7 @@
       "get": {
         "summary": "Retrives the top 10 companies based on cui or name as the keyword.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "search",
         "parameters": [
@@ -1305,7 +1371,7 @@
       "get": {
         "summary": "Retrives the companies based on cui or name in a pageable manner.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "find",
         "parameters": [
@@ -1385,7 +1451,7 @@
       "get": {
         "summary": "Filters company based on various indicators.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "listIndicators_1",
         "parameters": [
@@ -1429,7 +1495,7 @@
       "get": {
         "summary": "Retrives the top 10 bankrupt company stats based on a specific caen.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "findTop10CompaniesByCaen",
         "parameters": [
@@ -1519,7 +1585,7 @@
       "get": {
         "summary": "Retrives the active years of bankrupt companies.",
         "tags": [
-          "company-controller"
+          "Company"
         ],
         "operationId": "getBankruptCompaniesActiveYears",
         "parameters": [

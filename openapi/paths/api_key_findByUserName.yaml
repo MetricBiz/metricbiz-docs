@@ -1,7 +1,7 @@
 get:
   summary: Retrieves the API key based on an authentication token.
   tags:
-    - api-key-controller
+    - API Key
   operationId: getApiKey
   responses:
     '200':

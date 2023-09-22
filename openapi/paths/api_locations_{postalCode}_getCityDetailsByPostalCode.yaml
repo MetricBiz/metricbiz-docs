@@ -1,7 +1,7 @@
 get:
   summary: Retrieves the city details by postal code.
   tags:
-    - city-controller
+    - Location
   operationId: findByPostalCode
   parameters:
     - name: postalCode

@@ -1,7 +1,7 @@
 get:
   summary: Compute the risk of a given company cui.
   tags:
-    - company-controller
+    - Company
   operationId: getCompanyRisk
   parameters:
     - name: cui

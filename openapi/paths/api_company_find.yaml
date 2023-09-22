@@ -1,7 +1,7 @@
 get:
   summary: Retrives the companies based on cui or name in a pageable manner.
   tags:
-    - company-controller
+    - Company
   operationId: find
   parameters:
     - name: pageNo

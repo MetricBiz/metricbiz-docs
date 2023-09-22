@@ -1,7 +1,7 @@
 post:
   summary: This is used to authenticate an user.
   tags:
-    - user-controller
+    - User
   operationId: login
   requestBody:
     content:

@@ -1,7 +1,7 @@
 get:
   summary: Retrives the top 10 bankrupt company stats based on a specific caen.
   tags:
-    - company-controller
+    - Company
   operationId: findTop10CompaniesByCaen
   parameters:
     - name: caen

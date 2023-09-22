@@ -1,7 +1,7 @@
 post:
   summary: This refreshes the api key.
   tags:
-    - api-key-controller
+    - API Key
   operationId: refreshApiKey
   responses:
     '200':

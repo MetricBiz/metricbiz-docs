@@ -1,7 +1,7 @@
 get:
   summary: Checks the number of credit that the user can still use.
   tags:
-    - subscription-controller
+    - Subscription
   operationId: getActiveSubscriptionForUser
   responses:
     '200':

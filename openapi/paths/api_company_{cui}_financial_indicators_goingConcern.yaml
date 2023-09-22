@@ -1,7 +1,7 @@
 get:
   summary: Retrives the going concern indicator of a given company cui.
   tags:
-    - company-controller
+    - Company
   operationId: getGoingConcern
   parameters:
     - name: cui

@@ -3,7 +3,7 @@ post:
     This is used logout an existing user. This will mark also the token as
     unusable once called.
   tags:
-    - user-controller
+    - User
   operationId: logout
   responses:
     '200':

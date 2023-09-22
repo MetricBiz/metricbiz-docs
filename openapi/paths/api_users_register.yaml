@@ -1,7 +1,7 @@
 post:
   summary: This is used to register a new user to the MetricBiz Platform.
   tags:
-    - user-controller
+    - User
   operationId: saveUser
   requestBody:
     content:

@@ -1,7 +1,7 @@
 get:
   summary: Retrives the profitability of a given company cui.
   tags:
-    - company-controller
+    - Company
   operationId: getProfitability
   parameters:
     - name: cui

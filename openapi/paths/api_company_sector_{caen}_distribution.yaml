@@ -1,7 +1,7 @@
 get:
   summary: Retrives the company distribution on a given sector caen.
   tags:
-    - company-controller
+    - Company
   operationId: getSectorDistributionByCaen
   parameters:
     - name: caen

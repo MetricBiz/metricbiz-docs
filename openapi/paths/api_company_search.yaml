@@ -1,7 +1,7 @@
 get:
   summary: Retrives the top 10 companies based on cui or name as the keyword.
   tags:
-    - company-controller
+    - Company
   operationId: search
   parameters:
     - name: keyword

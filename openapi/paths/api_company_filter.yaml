@@ -1,7 +1,7 @@
 get:
   summary: Filters company based on various indicators.
   tags:
-    - company-controller
+    - Company
   operationId: listIndicators_1
   parameters:
     - name: companyFilterCriteria

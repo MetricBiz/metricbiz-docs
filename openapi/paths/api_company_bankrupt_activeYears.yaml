@@ -1,7 +1,7 @@
 get:
   summary: Retrives the active years of bankrupt companies.
   tags:
-    - company-controller
+    - Company
   operationId: getBankruptCompaniesActiveYears
   parameters:
     - name: activityYears

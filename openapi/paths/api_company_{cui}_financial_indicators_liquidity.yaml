@@ -1,7 +1,7 @@
 get:
   summary: Retrives the liquidity of a given company cui.
   tags:
-    - company-controller
+    - Company
   operationId: getLiquidity
   parameters:
     - name: cui

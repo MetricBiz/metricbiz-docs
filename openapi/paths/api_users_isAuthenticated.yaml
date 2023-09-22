@@ -1,7 +1,7 @@
 get:
   summary: Checks if the token is still usable or if the user is authenticated.
   tags:
-    - user-controller
+    - User
   operationId: userPing
   responses:
     '200':

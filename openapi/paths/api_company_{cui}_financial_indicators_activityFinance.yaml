@@ -1,7 +1,7 @@
 get:
   summary: Retrives the finance activity of a given company cui.
   tags:
-    - company-controller
+    - Company
   operationId: getActivityFinance
   parameters:
     - name: cui

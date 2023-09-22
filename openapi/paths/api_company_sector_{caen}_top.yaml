@@ -1,7 +1,7 @@
 get:
   summary: Retrives the top 10 companies on a given sector caen.
   tags:
-    - company-controller
+    - Company
   operationId: getTop10CompaniesByCaen
   parameters:
     - name: caen
