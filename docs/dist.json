@@ -5,13 +5,13 @@
     "description": "MetricBiz APIs definitions.",
     "version": "1.0.0",
     "license": {
-      "name": "This licence belongs to MetricBiz.",
-      "url": "https://app.metricbiz.com/"
+      "name": "MetricBiz",
+      "url": "https://app.metricbiz.com"
     }
   },
   "servers": [
     {
-      "url": "http://localhost:9000",
+      "url": "https://app.metricbiz.com/v1",
       "description": "Generated server url"
     }
   ],
