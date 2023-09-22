@@ -6,10 +6,13 @@ properties:
       $ref: .\CompanyDetails.yaml
   cui:
     type: string
+    example: '40167467'
   caen:
     type: string
+    example: '4711 - Retail trade in non-specialized stores, mainly selling food, beverages and tobacco'
   address:
     type: string
+    example: 'Loc. Târgu Lăpuş, Oraş Târgu Lăpuş, Str. TINERETULUI, Nr. 10, Județ Maramureş, Cod poștal 435600'
   status:
     uniqueItems: true
     type: array
@@ -17,16 +20,22 @@ properties:
       $ref: .\Status.yaml
   registrationNumber:
     type: string
+    example: 'J24/1880/2018'
   companyName:
     type: string
+    example: 'APOZEC UNIVERSAL S.R.L.'
   yearOfEstablishment:
     type: string
     format: date
+    example: '2018-01-01'
   yearsOfOperation:
     type: integer
     format: int32
+    example: 5
   countViews:
     type: integer
     format: int32
+    example: 47
   currency:
     type: string
+    example: 'RON'

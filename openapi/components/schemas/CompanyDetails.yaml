@@ -2,13 +2,18 @@ type: object
 properties:
   profit:
     type: number
+    example: 176334
   employeesNumber:
     type: integer
     format: int64
+    example: 4
   salesFigure:
     type: number
+    example: 2929638
   year:
     type: integer
     format: int32
+    example: 2022
   salesFigurePercentageIncreased:
     type: number
+    example: 32.00

@@ -2206,21 +2206,26 @@
         "type": "object",
         "properties": {
           "profit": {
-            "type": "number"
+            "type": "number",
+            "example": 176334
           },
           "employeesNumber": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "example": 4
           },
           "salesFigure": {
-            "type": "number"
+            "type": "number",
+            "example": 2929638
           },
           "year": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 2022
           },
           "salesFigurePercentageIncreased": {
-            "type": "number"
+            "type": "number",
+            "example": 32
           }
         }
       },
@@ -2229,18 +2234,22 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2023-05-03T11:28:27.520056Z"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2023-05-03T11:28:27.520056Z"
           },
           "code": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 1048
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "example": "function"
           }
         }
       },
@@ -2254,13 +2263,16 @@
             }
           },
           "cui": {
-            "type": "string"
+            "type": "string",
+            "example": "40167467"
           },
           "caen": {
-            "type": "string"
+            "type": "string",
+            "example": "4711 - Retail trade in non-specialized stores, mainly selling food, beverages and tobacco"
           },
           "address": {
-            "type": "string"
+            "type": "string",
+            "example": "Loc. Târgu Lăpuş, Oraş Târgu Lăpuş, Str. TINERETULUI, Nr. 10, Județ Maramureş, Cod poștal 435600"
           },
           "status": {
             "uniqueItems": true,
@@ -2270,25 +2282,31 @@
             }
           },
           "registrationNumber": {
-            "type": "string"
+            "type": "string",
+            "example": "J24/1880/2018"
           },
           "companyName": {
-            "type": "string"
+            "type": "string",
+            "example": "APOZEC UNIVERSAL S.R.L."
           },
           "yearOfEstablishment": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "2018-01-01"
           },
           "yearsOfOperation": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 5
           },
           "countViews": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 47
           },
           "currency": {
-            "type": "string"
+            "type": "string",
+            "example": "RON"
           }
         }
       },
