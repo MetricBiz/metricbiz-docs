@@ -9,19 +9,24 @@ get:
       required: true
       schema:
         type: string
+      example: '40167467'
     - name: currency
       in: query
       required: false
       schema:
         type: string
         default: RON
+      example: 'RON'
   responses:
     '200':
       description: OK
       content:
-        '*/*':
+        application/json:
           schema:
             $ref: ..\components\schemas\CompanyDetailsResponse.yaml
+          example:
+            $ref: ..\components\examples\CompanyDetailsResponse.yaml
+
     '400':
       description: Bad Request
       content:
