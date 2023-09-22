@@ -19,7 +19,7 @@ get:
       example: 'RON'
   responses:
     '200':
-      description: OK
+      description: Company details received with success.
       content:
         application/json:
           schema:
@@ -27,12 +27,17 @@ get:
           example:
             $ref: ..\components\examples\CompanyDetailsResponse.yaml
 
-    '400':
-      description: Bad Request
+    '404':
+      description: Company was not found.
       content:
-        '*/*':
+        application/json:
           schema:
             $ref: ..\components\schemas\Fault.yaml
+          example:
+            value:
+              code: '404'
+              message: 'Company with cui=123 does not exist!'
+
   x-codeSamples:
     - lang: C#
       source:
