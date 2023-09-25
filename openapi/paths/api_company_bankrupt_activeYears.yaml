@@ -62,3 +62,20 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_company_bankrupt_activeYears.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_company_bankrupt_activeYears.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_company_bankrupt_activeYears.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_company_bankrupt_activeYears.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_company_bankrupt_activeYears.py

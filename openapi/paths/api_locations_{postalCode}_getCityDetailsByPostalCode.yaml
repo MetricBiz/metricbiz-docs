@@ -36,3 +36,21 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_locations_{postalCode}_getCityDetailsByPostalCode.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_locations_{postalCode}_getCityDetailsByPostalCode.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_locations_{postalCode}_getCityDetailsByPostalCode.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_locations_{postalCode}_getCityDetailsByPostalCode.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_locations_{postalCode}_getCityDetailsByPostalCode.py
+

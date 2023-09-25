@@ -18,3 +18,20 @@ post:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_users_logout.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_users_logout.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_users_logout.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_users_logout.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_users_logout.py

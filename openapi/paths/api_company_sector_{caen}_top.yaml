@@ -24,3 +24,20 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_company_sector_{caen}_top.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_company_sector_{caen}_top.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_company_sector_{caen}_top.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_company_sector_{caen}_top.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_company_sector_{caen}_top.py

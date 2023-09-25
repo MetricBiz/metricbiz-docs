@@ -31,3 +31,20 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_locations_getCounties.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_locations_getCounties.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_locations_getCounties.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_locations_getCounties.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_locations_getCounties.py
