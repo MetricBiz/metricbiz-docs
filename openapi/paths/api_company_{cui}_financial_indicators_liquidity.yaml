@@ -28,3 +28,20 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_company_{cui}_financial_indicators_liquidity.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_company_{cui}_financial_indicators_liquidity.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_company_{cui}_financial_indicators_liquidity.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_company_{cui}_financial_indicators_liquidity.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_company_{cui}_financial_indicators_liquidity.py

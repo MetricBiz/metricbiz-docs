@@ -18,3 +18,20 @@ get:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_currency_list.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_currency_list.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_currency_list.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_currency_list.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_currency_list.py

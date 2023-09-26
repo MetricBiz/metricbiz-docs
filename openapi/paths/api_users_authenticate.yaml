@@ -22,3 +22,20 @@ post:
         '*/*':
           schema:
             $ref: ..\components\schemas\Fault.yaml
+
+            x-codeSamples:
+              - lang: C#
+                source:
+                  $ref: ../code_samples/csharp/api_users_authenticate.cs
+              - lang: Java
+                source:
+                  $ref: ../code_samples/java/api_users_authenticate.java
+              - lang: Javascript
+                source:
+                  $ref: ../code_samples/javascript/api_users_authenticate.js
+              - lang: ReactJs
+                source:
+                  $ref: ../code_samples/reactJs/api_users_authenticate.js
+              - lang: Python
+                source:
+                  $ref: ../code_samples/python/api_users_authenticate.py
