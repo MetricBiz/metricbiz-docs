@@ -1,0 +1,2209 @@
+openapi: 3.0.1
+info:
+  title: Metricbiz
+  description: MetricBiz APIs definitions.
+  version: 1.0.0
+servers:
+  - url: http://localhost:9000
+    description: Generated server url
+security:
+  - X-ApiKey-Auth: []
+paths:
+  /api/users/register:
+    post:
+      tags:
+        - user-controller
+      operationId: saveUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/users/logout:
+    post:
+      tags:
+        - user-controller
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/users/authenticate:
+    post:
+      tags:
+        - user-controller
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/key/refresh:
+    post:
+      tags:
+        - api-key-controller
+      operationId: refreshApiKey
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserRefreshApiKeyResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/users/isAuthenticated:
+    get:
+      tags:
+        - user-controller
+      operationId: userPing
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserAuthDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/users/id:
+    get:
+      tags:
+        - user-controller
+      operationId: findUserById
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/subscription/creditProfile:
+    get:
+      tags:
+        - subscription-controller
+      operationId: getActiveSubscriptionForUser
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserSubscriptionResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/locations/{postalCode}/getCityDetailsByPostalCode:
+    get:
+      tags:
+        - city-controller
+      operationId: findByPostalCode
+      parameters:
+        - name: postalCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: header
+          required: false
+          schema:
+            type: string
+            default: en
+        - name: traceid
+          in: header
+          required: false
+          schema:
+            type: string
+            default: none
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cities'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/locations/{county}/getAllLocations:
+    get:
+      tags:
+        - city-controller
+      operationId: getAllCitiesByCounty
+      parameters:
+        - name: county
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageCityDetailsModel'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/locations/getCounties:
+    get:
+      tags:
+        - city-controller
+      operationId: getAllCounties
+      parameters:
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageString'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/key/findByUserName:
+    get:
+      tags:
+        - api-key-controller
+      operationId: getApiKey
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserRefreshApiKeyResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/currency/list:
+    get:
+      tags:
+        - currency-controller
+      operationId: getAllCurrencies
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}:
+    get:
+      tags:
+        - Company
+      operationId: getCompanyBasicDetails
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CompanyDetailsResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/risk/compute:
+    get:
+      tags:
+        - Company
+      operationId: getCompanyRisk
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RiskScore'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators:
+    get:
+      tags:
+        - Company
+      operationId: listIndicators
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FinancialIndicatorResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/summary:
+    get:
+      tags:
+        - Company
+      operationId: getSummary
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SummaryReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/profitability:
+    get:
+      tags:
+        - Company
+      operationId: getProfitability
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProfitabilityReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/numeralFlux:
+    get:
+      tags:
+        - Company
+      operationId: getNumeralFlux
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NumeralFluxReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/liquidity:
+    get:
+      tags:
+        - Company
+      operationId: getLiquidity
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LiquidityReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/investment:
+    get:
+      tags:
+        - Company
+      operationId: getInvestment
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InvestmentReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/goingConcern:
+    get:
+      tags:
+        - Company
+      operationId: getGoingConcern
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GoingConcernReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/competitive:
+    get:
+      tags:
+        - Company
+      operationId: getCompetitive
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CompetitiveReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/chart:
+    get:
+      tags:
+        - Company
+      operationId: listIndicatorsAsChart
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FinancialIndicatorChartResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/{cui}/financial/indicators/activityFinance:
+    get:
+      tags:
+        - Company
+      operationId: getActivityFinance
+      parameters:
+        - name: cui
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          schema:
+            type: string
+            default: RON
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FinanceActivityReportResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/sector/{caen}/top:
+    get:
+      tags:
+        - Company
+      operationId: getTop10CompaniesByCaen
+      parameters:
+        - name: caen
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TopCompaniesByFiscalValueView'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/sector/{caen}/distribution:
+    get:
+      tags:
+        - Company
+      operationId: getSectorDistributionByCaen
+      parameters:
+        - name: caen
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SectorDistributionByFiscalValueView'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/sector/{caen}/average:
+    get:
+      tags:
+        - Company
+      operationId: getSectorAverageByCaen
+      parameters:
+        - name: caen
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SectorAverageView'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/search:
+    get:
+      tags:
+        - Company
+      operationId: search
+      parameters:
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchCompanyResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/find:
+    get:
+      tags:
+        - Company
+      summary: Retrieve Companies by cui or name.
+      description: Retrieves a page of Companies in by cui or name by specifying also the response currency format.
+      operationId: find
+      parameters:
+        - name: pageNo
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+          example: 10
+        - name: pageSize
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+          example: 10
+        - name: cuiOrName
+          in: query
+          description: Company CUI or name
+          required: false
+          schema:
+            type: string
+            default: ''
+          example: 116
+        - name: sortBy
+          in: query
+          description: Company Sort value
+          required: false
+          schema:
+            type: string
+            default: name
+          example: name
+        - name: currency
+          in: query
+          description: Currency of the response
+          required: false
+          schema:
+            type: string
+            default: RON
+          example: RON
+      responses:
+        '200':
+          description: Successfully retrieved a company page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageCompanyDetailsResponse'
+              examples:
+                PageCompanyDetailsResponse:
+                  description: PageCompanyDetailsResponse
+                  value:
+                    totalPages: 1
+                    totalElements: 1
+                    size: 10
+                    content:
+                      - details:
+                          - profit: -7739
+                            employeesNumber: 0
+                            salesFigure: 74308
+                            year: 2018
+                            salesFigurePercentageIncreased: 100
+                          - profit: 79478
+                            employeesNumber: 2
+                            salesFigure: 1343084
+                            year: 2019
+                            salesFigurePercentageIncreased: 1708
+                          - profit: 76359
+                            employeesNumber: 3
+                            salesFigure: 1703839
+                            year: 2020
+                            salesFigurePercentageIncreased: 27
+                          - profit: 70453
+                            employeesNumber: 4
+                            salesFigure: 2221787
+                            year: 2021
+                            salesFigurePercentageIncreased: 31
+                          - profit: 176334
+                            employeesNumber: 4
+                            salesFigure: 2929638
+                            year: 2022
+                            salesFigurePercentageIncreased: 32
+                        cui: '40167467'
+                        caen: 4711 - Retail trade in non-specialized stores, mainly selling food, beverages and tobacco
+                        address: Loc. Târgu Lăpuş, Oraş Târgu Lăpuş, Str. TINERETULUI, Nr. 10, Județ Maramureş, Cod poștal 435600
+                        status:
+                          - createdAt: '2023-05-03T11:28:27.520056Z'
+                            updatedAt: '2023-09-19T06:11:28.542431Z'
+                            code: 1048
+                            description: function
+                          - createdAt: '2023-05-03T11:28:27.64181Z'
+                            updatedAt: '2023-09-19T06:11:28.621042Z'
+                            code: 2069
+                            description: headquarters expired
+                        registrationNumber: J24/1880/2018
+                        companyName: APOZEC UNIVERSAL S.R.L.
+                        yearOfEstablishment: '2018-01-01'
+                        yearsOfOperation: 5
+                        countViews: 47
+                        currency: RON
+                    number: 0
+                    sort:
+                      empty: false
+                      sorted: true
+                      unsorted: false
+                    first: true
+                    last: true
+                    numberOfElements: 1
+                    pageable:
+                      offset: 0
+                      sort:
+                        empty: false
+                        sorted: true
+                        unsorted: false
+                      pageNumber: 0
+                      pageSize: 10
+                      unpaged: false
+                      paged: true
+                    empty: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fault'
+              examples:
+                FaultResponse:
+                  description: FaultResponse
+                  value:
+                    code: 400
+                    message: Error client
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fault'
+              examples:
+                FaultResponse:
+                  description: FaultResponse
+                  value:
+                    code: 500
+                    message: No property 'asda' found for type 'Company'
+      x-codeSamples:
+        - lang: Java
+          source: |
+            import org.springframework.http.ResponseEntity;
+            import org.springframework.web.client.RestTemplate;
+            import java.util.HashMap;
+            import java.util.Map;
+
+            public class CompanyClient {
+                private static final String URL = "https://your-api-base-url/path-to-resource";
+                
+                public PageCompanyDetailsResponse getCompanies(String cuiOrName, String currency, int pageNo, int pageSize, String sortBy) {
+                    RestTemplate restTemplate = new RestTemplate();
+
+                    Map<String, Object> params = new HashMap<>();
+                    params.put("cuiOrName", cuiOrName);
+                    params.put("currency", currency);
+                    params.put("pageNo", pageNo);
+                    params.put("pageSize", pageSize);
+                    params.put("sortBy", sortBy);
+
+                    ResponseEntity<PageCompanyDetailsResponse> responseEntity = restTemplate.getForEntity(URL + "?cuiOrName={cuiOrName}&currency={currency}&pageNo={pageNo}&pageSize={pageSize}&sortBy={sortBy}", 
+                        PageCompanyDetailsResponse.class, 
+                        params);
+                    
+                    return responseEntity.getBody();
+                }
+
+                public static void main(String[] args) {
+                    CompanyClient client = new CompanyClient();
+                    PageCompanyDetailsResponse response = client.getCompanies("116", "RON", 0, 10, "name");
+                    // process the response as needed
+                }
+            }
+        - lang: C#
+          source: |
+            using System;
+            using System.Net.Http;
+            using System.Threading.Tasks;
+            using System.Collections.Generic;
+            using Newtonsoft.Json;
+
+            public class CompanyClient {
+                private static readonly string BaseUrl = "https://your-api-base-url/path-to-resource";
+
+                public async Task<PageCompanyDetailsResponse> GetCompaniesAsync(string cuiOrName, string currency, int pageNo, int pageSize, string sortBy) {
+                    using (HttpClient client = new HttpClient()) {
+                        var url = $"{BaseUrl}?cuiOrName={cuiOrName}&currency={currency}&pageNo={pageNo}&pageSize={pageSize}&sortBy={sortBy}";
+                        
+                        HttpResponseMessage response = await client.GetAsync(url);
+                        
+                        if (response.IsSuccessStatusCode) {
+                            var jsonString = await response.Content.ReadAsStringAsync();
+                            return JsonConvert.DeserializeObject<PageCompanyDetailsResponse>(jsonString);
+                        } else {
+                            // Handle error, throw exception, etc.
+                            return null;
+                        }
+                    }
+                }
+
+                public static async Task Main(string[] args) {
+                    var client = new CompanyClient();
+                    var result = await client.GetCompaniesAsync("116", "RON", 0, 10, "name");
+                    // Process the result as needed.
+                }
+            }
+        - lang: Javascript
+          source: |
+            const BASE_URL = "https://your-api-base-url/path-to-resource";
+
+            async function getCompanies(cuiOrName, currency, pageNo, pageSize, sortBy) {
+                const url = `${BASE_URL}?cuiOrName=${encodeURIComponent(cuiOrName)}&currency=${encodeURIComponent(currency)}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${encodeURIComponent(sortBy)}`;
+
+                try {
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    console.error("There was a problem with the fetch operation:", error.message);
+                    return null;
+                }
+            }
+
+            // Usage
+            getCompanies("116", "RON", 0, 10, "name").then(data => {
+                if (data) {
+                    console.log(data);
+                    // Process the data as needed.
+                }
+            });
+        - lang: ReactJS
+          source: |
+            import React, { useState, useEffect } from 'react';
+
+            function CompanyData() {
+                const BASE_URL = "https://your-api-base-url/path-to-resource";
+
+                const [data, setData] = useState(null);
+                const [error, setError] = useState(null);
+
+                async function getCompanies(cuiOrName, currency, pageNo, pageSize, sortBy) {
+                    const url = `${BASE_URL}?cuiOrName=${encodeURIComponent(cuiOrName)}&currency=${encodeURIComponent(currency)}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${encodeURIComponent(sortBy)}`;
+
+                    try {
+                        const response = await fetch(url);
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+
+                        return await response.json();
+                    } catch (err) {
+                        setError(err.message);
+                        return null;
+                    }
+                }
+
+                useEffect(() => {
+                    getCompanies("116", "RON", 0, 10, "name").then(responseData => {
+                        setData(responseData);
+                    });
+                }, []); // The empty dependency array ensures this effect runs once when the component mounts.
+
+                return (
+                    <div>
+                        {error && <div>Error: {error}</div>}
+                        {data ? (
+                            <div>
+                                {/* Render your data here. For example: */}
+                                {data.content && data.content.map((company, index) => (
+                                    <div key={index}>
+                                        {company.cui} - {company.companyName}
+                                        {/* ...other company details */}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div>Loading...</div>
+                        )}
+                    </div>
+                );
+            }
+
+            export default CompanyData;
+        - lang: Python
+          source: |
+            import requests
+
+            BASE_URL = "https://your-api-base-url/path-to-resource"
+
+            def get_companies(cui_or_name, currency, page_no, page_size, sort_by):
+                params = {
+                    "cuiOrName": cui_or_name,
+                    "currency": currency,
+                    "pageNo": page_no,
+                    "pageSize": page_size,
+                    "sortBy": sort_by
+                }
+                
+                response = requests.get(BASE_URL, params=params)
+
+                if response.status_code == 200:
+                    return response.json()
+                else:
+                    # Handle error or raise exception based on needs.
+                    response.raise_for_status()
+
+            # Usage
+            data = get_companies("116", "RON", 0, 10, "name")
+            if data:
+                # Process the data as needed
+                print(data)
+  /api/company/filter:
+    get:
+      tags:
+        - Company
+      operationId: listIndicators_1
+      parameters:
+        - name: companyFilterCriteria
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CompanyFilterCriteria'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchCompanyResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/bankrupt/stats:
+    get:
+      tags:
+        - Company
+      operationId: findTop10CompaniesByCaen
+      parameters:
+        - name: caen
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: county
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: caen
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageBankruptCompanyStatsView'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+  /api/company/bankrupt/activeYears:
+    get:
+      tags:
+        - Company
+      operationId: getBankruptCompaniesActiveYears
+      parameters:
+        - name: activityYears
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+            default: 3
+        - name: caen
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+        - name: cui
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+        - name: county
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: cui
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageBankruptCompaniesActiveYearsView'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Fault'
+components:
+  schemas:
+    Fault:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        companyName:
+          type: string
+        cui:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        postCode:
+          type: string
+        country:
+          type: string
+        state:
+          type: string
+    UserDTO:
+      required:
+        - email
+        - firstName
+        - lastName
+        - password
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - BASIC
+            - FACEBOOK
+            - GOOGLE
+        email:
+          maxLength: 255
+          minLength: 1
+          type: string
+        password:
+          maxLength: 255
+          minLength: 8
+          type: string
+        phone:
+          maxLength: 10
+          minLength: 10
+          pattern: ^[0-9]+$
+          type: string
+        firstName:
+          maxLength: 255
+          minLength: 1
+          pattern: ^[a-zA-Z]*$
+          type: string
+        lastName:
+          maxLength: 255
+          minLength: 1
+          pattern: ^[a-zA-Z]*$
+          type: string
+        clientId:
+          type: string
+        userId:
+          type: string
+        stripeCustomerId:
+          type: string
+        isLegalPerson:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    Subscription:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        requestCounter:
+          type: integer
+          format: int64
+        allowedRequestCounter:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+            - TRIAL
+            - BASIC
+            - STANDARD
+            - PREMIUM
+            - CUSTOM
+            - NONE
+        stripeSubscriptionId:
+          type: string
+        stripeDescription:
+          type: string
+        stripeStatus:
+          type: string
+          enum:
+            - CANCELED
+            - PENDING
+            - ACTIVE
+        expiryAt:
+          type: string
+          format: date-time
+        billAddress:
+          $ref: '#/components/schemas/Address'
+    User:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+            - BASIC
+            - FACEBOOK
+            - GOOGLE
+        username:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        clientId:
+          type: string
+        userId:
+          type: string
+        apiKey:
+          type: string
+        stripeCustomerId:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+        selectedCui:
+          type: string
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRole'
+        isLegalPerson:
+          type: boolean
+        billAddress:
+          $ref: '#/components/schemas/Address'
+        pendingSubscription:
+          $ref: '#/components/schemas/Subscription'
+        activeSubscription:
+          $ref: '#/components/schemas/Subscription'
+    UserRole:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+    LoginUser:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    UserRefreshApiKeyResponseDTO:
+      type: object
+      properties:
+        apiKey:
+          type: string
+    UserAuthDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        email:
+          type: string
+        authenticated:
+          type: boolean
+    UserSubscriptionResponse:
+      type: object
+      properties:
+        usedCredit:
+          type: integer
+          format: int64
+        subscriptionType:
+          type: string
+          enum:
+            - TRIAL
+            - BASIC
+            - STANDARD
+            - PREMIUM
+            - CUSTOM
+            - NONE
+        subscriptionRenewalDate:
+          type: string
+          format: date-time
+        totalCredit:
+          type: integer
+          format: int64
+    Cities:
+      type: object
+      properties:
+        postalCode:
+          type: string
+        city:
+          type: string
+        county:
+          type: string
+        autoCounty:
+          type: string
+        streetName:
+          type: string
+    CityDetailsModel:
+      type: object
+      properties:
+        county:
+          type: string
+        cityInfosList:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/StreetAndPostalCode'
+        auto:
+          type: string
+    PageCityDetailsModel:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/CityDetailsModel'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    StreetAndPostalCode:
+      type: object
+      properties:
+        streetName:
+          type: string
+        postalCode:
+          type: string
+    PageString:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: string
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    CompanyDetails:
+      type: object
+      properties:
+        profit:
+          type: number
+        employeesNumber:
+          type: integer
+          format: int64
+        salesFigure:
+          type: number
+        year:
+          type: integer
+          format: int32
+        salesFigurePercentageIncreased:
+          type: number
+    CompanyDetailsResponse:
+      type: object
+      properties:
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyDetails'
+        cui:
+          type: string
+        caen:
+          type: string
+        address:
+          type: string
+        status:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Status'
+        registrationNumber:
+          type: string
+        companyName:
+          type: string
+        yearOfEstablishment:
+          type: string
+          format: date
+        yearsOfOperation:
+          type: integer
+          format: int32
+        countViews:
+          type: integer
+          format: int32
+        currency:
+          type: string
+    Status:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        code:
+          type: integer
+          format: int32
+        description:
+          type: string
+    RiskScore:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        cui:
+          type: string
+        caen:
+          type: string
+        riskScoreValue:
+          type: number
+        riskDescription:
+          type: string
+        currency:
+          type: string
+    FinancialIndicatorDTO:
+      type: object
+      properties:
+        updatedAt:
+          type: string
+          format: date-time
+        caen:
+          type: string
+        fromYear:
+          type: integer
+          format: int32
+        indicators:
+          type: object
+          additionalProperties:
+            type: number
+    FinancialIndicatorResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        currency:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinancialIndicatorDTO'
+    SummaryReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        totalAssets:
+          type: number
+        totalDebts:
+          type: number
+        shortTermDebts:
+          type: number
+        longTermDebts:
+          type: number
+        currentAssets:
+          type: number
+        fixedAssets:
+          type: number
+        equity:
+          type: number
+        fiscalValue:
+          type: number
+        ebit:
+          type: number
+        financialResult:
+          type: number
+        netResult:
+          type: number
+    SummaryReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryReport'
+        currency:
+          type: string
+    ProfitabilityReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        roa:
+          type: number
+        roe:
+          type: number
+        netResult:
+          type: number
+        operationalResult:
+          type: number
+        oroa:
+          type: number
+    ProfitabilityReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitabilityReport'
+        currency:
+          type: string
+    NumeralFluxReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        advanceInventoryReceivable:
+          type: number
+    NumeralFluxReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumeralFluxReport'
+        currency:
+          type: string
+    LiquidityReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        currentLiquidity:
+          type: number
+        immediateLiquidity:
+          type: number
+        cashLiquidity:
+          type: number
+        dir:
+          type: number
+        ccr:
+          type: number
+    LiquidityReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiquidityReport'
+        currency:
+          type: string
+    InvestmentReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        capexRithm:
+          type: number
+        depreciationRate:
+          type: number
+        tangibleRealEstateAssets:
+          type: number
+        fiscalValue:
+          type: number
+    InvestmentReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvestmentReport'
+        currency:
+          type: string
+    GoingConcernReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        activeStructures:
+          type: number
+        levelOfIndebtedness:
+          type: number
+        financialHorizon:
+          type: number
+        interestCoverage:
+          type: number
+    GoingConcernReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/GoingConcernReport'
+        currency:
+          type: string
+    CompetitiveReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        businessFigure:
+          type: number
+        ebit:
+          type: number
+        netResult:
+          type: number
+        operationalLever:
+          type: number
+        financialLever:
+          type: number
+        totalLever:
+          type: number
+    CompetitiveReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitiveReport'
+        currency:
+          type: string
+    FinancialIndicatorChartDTO:
+      type: object
+      properties:
+        label:
+          type: string
+        data:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/FinancialIndicatorChartDataDTO'
+    FinancialIndicatorChartDataDTO:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+        value:
+          type: number
+    FinancialIndicatorChartResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        currency:
+          type: string
+        caen:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinancialIndicatorChartDTO'
+    FinanceActivityReport:
+      type: object
+      properties:
+        fromYear:
+          type: integer
+          format: int32
+        dso:
+          type: number
+        dih:
+          type: number
+        operationalCycle:
+          type: number
+        dra:
+          type: number
+        dpo:
+          type: number
+        ccc:
+          type: number
+        drcl:
+          type: number
+    FinanceActivityReportResponseDTO:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinanceActivityReport'
+        currency:
+          type: string
+    TopCompaniesByFiscalValueView:
+      type: object
+      properties:
+        caen:
+          type: string
+        name:
+          type: string
+        cui:
+          type: string
+        cifradeafacerineta:
+          type: number
+        fromYear:
+          type: integer
+          format: int32
+    SectorDistributionByFiscalValueView:
+      type: object
+      properties:
+        caen:
+          type: string
+        fromYear:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        from0to100k:
+          type: integer
+          format: int64
+        from100kto500k:
+          type: integer
+          format: int64
+        from500kto1mil:
+          type: integer
+          format: int64
+        from1milto5mil:
+          type: integer
+          format: int64
+        from5milto10mil:
+          type: integer
+          format: int64
+        from10milto50mil:
+          type: integer
+          format: int64
+        biggerthan50mil:
+          type: integer
+          format: int64
+    SectorAverageView:
+      type: object
+      properties:
+        caen:
+          type: string
+        fromYear:
+          type: integer
+          format: int32
+        description:
+          type: string
+        fiscalValueCount:
+          type: number
+        fiscalValueAvg:
+          type: number
+        fiscalValueSum:
+          type: number
+        employeesCount:
+          type: number
+        employeesSum:
+          type: number
+        employeesAvg:
+          type: number
+        profitCount:
+          type: number
+        profitSum:
+          type: number
+        profitAvg:
+          type: number
+    SearchCompanyResponse:
+      type: object
+      properties:
+        cui:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+    PageCompanyDetailsResponse:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyDetailsResponse'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    CompanyFilterCriteria:
+      type: object
+      properties:
+        status:
+          type: string
+        caen:
+          type: string
+        caenGroup:
+          type: string
+        county:
+          type: string
+        locality:
+          type: string
+        minEmployees:
+          type: integer
+          format: int32
+        maxEmployees:
+          type: integer
+          format: int32
+        minFiscalValue:
+          type: number
+        maxFiscalValue:
+          type: number
+        minProfit:
+          type: number
+        maxProfit:
+          type: number
+    BankruptCompanyStatsView:
+      type: object
+      properties:
+        caen:
+          type: string
+        fromYear:
+          type: integer
+          format: int32
+        county:
+          type: string
+        bankruptCompanyCount:
+          type: integer
+          format: int64
+        companyCount:
+          type: integer
+          format: int64
+        percentage:
+          type: number
+    PageBankruptCompanyStatsView:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankruptCompanyStatsView'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    BankruptCompaniesActiveYearsView:
+      type: object
+      properties:
+        cui:
+          type: string
+        caen:
+          type: string
+        county:
+          type: string
+        activeYears:
+          type: integer
+          format: int64
+    PageBankruptCompaniesActiveYearsView:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankruptCompaniesActiveYearsView'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+  securitySchemes:
+    X-ApiKey-Auth:
+      type: apiKey
+      name: X-ApiKey-Auth
+      in: header

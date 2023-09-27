@@ -17,7 +17,9 @@
   ],
   "security": [
     {
-      "X-ApiKey-Auth": []
+      "X-ApiKey-Auth": [
+        "sssd"
+      ]
     }
   ],
   "paths": {

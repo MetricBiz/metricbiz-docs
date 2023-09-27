@@ -1,9 +1,0 @@
-type: object
-properties:
-  userId:
-    type: integer
-    format: int64
-  email:
-    type: string
-  authenticated:
-    type: boolean

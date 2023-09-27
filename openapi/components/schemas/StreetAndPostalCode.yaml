@@ -1,6 +1,0 @@
-type: object
-properties:
-  streetName:
-    type: string
-  postalCode:
-    type: string

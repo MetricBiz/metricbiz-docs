@@ -15,8 +15,8 @@ theme:
           main: "#32329f"
     generateCodeSamples:
       languages:  # Array of language config objects; indicates in which languages to generate code samples.
-        - lang: curl
         - lang: JavaScript
-        - lang: PHP
+        - lang: ReactJS
         - lang: Python
         - lang: Java
+        - lang: C#

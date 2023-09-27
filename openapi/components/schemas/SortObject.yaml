@@ -1,8 +1,0 @@
-type: object
-properties:
-  empty:
-    type: boolean
-  unsorted:
-    type: boolean
-  sorted:
-    type: boolean
